@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     const startBtn = document.getElementById('start-btn');
     const resetBtn = document.getElementById('reset-btn');
-    const delay = 200; // Delay between each step in milliseconds
+    const delayInput = document.getElementById('delay-input');
+    let delay = 300; // Delay between each step in milliseconds
     let points = []; // Array to store the points
     let algorithmStarted = false; // Track if the algorithm has started
     let circles = []
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const y1 = p1[1];
         const x2 = p2[0];
         const y2 = p2[1];
+        if(y2-y1 == 0) y2 = 0.000000001;
         const slope = -((x2 - x1) / (y2 - y1));
         const [midpoint_x, midpoint_y] = midpoint(p1, p2);
         const y_intercept = midpoint_y - slope * midpoint_x;
@@ -272,7 +274,6 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.style.display = 'block';
             smallestEnclosingCircle(points)
             interval = setInterval(draw, delay);
-            alert('Running algorithm...');
             overlay.style.display = 'none';
         } else {
             alert('Please add points before starting the algorithm.');
@@ -283,5 +284,8 @@ document.addEventListener('DOMContentLoaded', function() {
     resetBtn.addEventListener('click', function() {
         clearInterval(interval);
         reset();
+    });
+    delayInput.addEventListener('change', function() {
+        delay = parseInt(delayInput.value); // Assuming delay is the variable you want to update
     });
 });
