@@ -31,3 +31,16 @@ body {
 button {
     margin-top: 10px;
 }
+
+/* Styles for the input field */
+#delay-input {
+    margin-right: 10px; /* Add margin to separate from buttons */
+    padding: 5px; /* Add padding for better appearance */
+}
+
+/* Styles for buttons (just for reference) */
+#start-btn, #reset-btn {
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
