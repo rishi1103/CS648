@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#canvas-container {
+    position: relative;
+}
+
+#canvas {
+    border: 1px solid #000;
+    background-color: #fff;
+    position: relative; /* Ensure canvas is positioned relative to its container */
+    z-index: 1; /* Set a high z-index value to display the canvas above other elements */
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+button {
+    margin-top: 10px;
+}
