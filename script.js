@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     const startBtn = document.getElementById('start-btn');
     const resetBtn = document.getElementById('reset-btn');
-    const delay = 1500; // Delay between each step in milliseconds
+    const delay = 200; // Delay between each step in milliseconds
     let points = []; // Array to store the points
     let algorithmStarted = false; // Track if the algorithm has started
     let circles = []
