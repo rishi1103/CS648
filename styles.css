@@ -44,3 +44,26 @@ button {
     padding: 5px 10px;
 }
 
+/* Styles for the canvas container */
+#canvas-container {
+    width: 70%; /* Set width to 70% of the viewport */
+    height: 70vh; /* Set height to 70% of the viewport height */
+    margin: auto; /* Center the canvas container horizontally */
+    position: relative; /* Make the canvas container position relative */
+
+    /* Optional: add other styling properties as needed */
+}
+
+/* Styles for the canvas */
+#canvas {
+    width: 100%; /* Set canvas width to 100% of its container */
+    height: 100%; /* Set canvas height to 100% of its container */
+    border: 1px solid black; /* Optional: add border for visualization */
+    display: block; /* Make the canvas a block element */
+}
+
+/* Optional: Styles for other elements */
+label, input, button {
+    margin: 5px; /* Add margin to separate elements */
+}
+
