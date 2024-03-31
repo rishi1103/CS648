@@ -336,13 +336,42 @@ document.addEventListener('DOMContentLoaded', function() {
             circle.classList.add('circle');
             const xOffset = Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20; // Bias towards left and right sides
             const circleSize = Math.floor(Math.random() * 100) + 50; // Random size between 5 and 15 pixels
+            const initialX = Math.random() * document.body.clientWidth;
+            const initialY = Math.random() * document.body.clientHeight;
             circle.style.width = `${circleSize}px`;
             circle.style.height = `${circleSize}px`;
-            circle.style.top = `${Math.random() * document.body.clientHeight}px`; // Random position from top
-            circle.style.left = `${xOffset}%`; // Random position from left
-            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+            circle.style.top = `${initialY}px`; // Random initial position from top
+            circle.style.left = `${initialX}px`; // Random initial position from left
+            const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16); // Generate random color
             circle.style.borderColor = randomColor; // Apply random border color
             backgroundPoints.appendChild(circle);
+    
+            // Define the movement parameters
+            const speed = 0.5; // Speed of movement in pixels per frame
+            const directionChangeInterval = 3000; // Interval in milliseconds for changing direction
+            let dx = Math.random() * speed * 2 - speed; // Initial x-direction velocity
+            let dy = Math.random() * speed * 2 - speed; // Initial y-direction velocity
+    
+            // Update circle position periodically
+            setInterval(() => {
+                const rect = circle.getBoundingClientRect();
+                let newX = rect.left + dx;
+                let newY = rect.top + dy;
+    
+                // Check if the circle is going out of bounds
+                if (newX < 0 || newX + circleSize > document.body.clientWidth) {
+                    dx = -dx; // Reverse x-direction velocity
+                    newX += dx;
+                }
+                if (newY < 0 || newY + circleSize > document.body.clientHeight) {
+                    dy = -dy; // Reverse y-direction velocity
+                    newY += dy;
+                }
+    
+                // Update circle position
+                circle.style.left = `${newX}px`;
+                circle.style.top = `${newY}px`;
+            }, 16); // Update approximately every 16 milliseconds (60 frames per second)
         }
     }
     
