@@ -7,14 +7,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="canvas-container">
-        <canvas id="canvas" width="800" height="600"></canvas>
-        <div id="overlay"></div>
-    </div>
-    <label for="delay-input">Delay Between Frames (ms): </label>
-    <input type="number" id="delay-input" value="150" min="0" step="50">
-    <button id="start-btn">Start</button>
-    <button id="reset-btn">Reset</button>
+    <header>
+        <h1>Smallest Enclosing Circle Visualization</h1>
+        <p>Welcome to the Smallest Enclosing Circle Visualization tool!</p>
+        <div id="instructions">
+            <h2>Instructions:</h2>
+            <p>Click on the canvas to add points. Adjust the delay between frames using the input field below.</p>
+            <p>The color of points indicates the following:</p>
+            <ul>
+                <li><span class="blue"></span> Blue: Points that are not being processed at the current step</li>
+                <li><span class="green"></span> Green: The Point that is being currently processed as a part of the Outermost Loop</li>
+                <li><span class="magenta"></span> Magenta: The Point that is being currently processed as a part of the Loop at the second level</li>
+                <li><span class="yellow"></span> Yellow: The Point that is being currently processed as a part of the Innermost Loop</li>
+                <li><span class="red"></span> Red: Points that are pinned on the boundary of the current circle</li>
+            </ul>
+            <p>If the point being processed at the current step has dashed lines around it, it means that the point lies outside the current circle.</p>
+        </div>
+    </header>
+    
+    
+
+    <main>
+        <div id="canvas-container">
+            <canvas id="canvas" width="800" height="600"></canvas>
+            <div id="overlay"></div>
+        </div>
+
+        <div id="controls">
+            <label for="delay-input">Delay Between Frames (ms): </label>
+            <input type="number" id="delay-input" value="300" min="0" step="50">
+            <button id="start-btn">Start</button>
+            <button id="reset-btn">Reset</button>
+            <button id="final-btn">Show Final State</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Developed by Group 4761328509</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
