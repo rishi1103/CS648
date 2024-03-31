@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function generateRandomCircles() {
-        const numCircles = 10;
+        const numCircles = 20;
         const backgroundPoints = document.getElementById('background-points');
     
         for (let i = 0; i < numCircles; i++) {
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Define the movement parameters
             const speed = 0.5; // Speed of movement in pixels per frame
-            const directionChangeInterval = 3000; // Interval in milliseconds for changing direction
+            const directionChangeInterval = 1000 + Math.random()*4000; // Interval in milliseconds for changing direction
             let dx = Math.random() * speed * 2 - speed; // Initial x-direction velocity
             let dy = Math.random() * speed * 2 - speed; // Initial y-direction velocity
     
@@ -372,6 +372,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 circle.style.left = `${newX}px`;
                 circle.style.top = `${newY}px`;
             }, 16); // Update approximately every 16 milliseconds (60 frames per second)
+
+            setInterval(() => {
+                dx = Math.random() * speed * 2 - speed;
+                dy = Math.random() * speed * 2 - speed;
+            }, directionChangeInterval);
         }
     }
     
