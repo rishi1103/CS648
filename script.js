@@ -349,7 +349,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Main function
     function main() {
         drawCircles();
-        generateRandomPoints();
         generateRandomCircles();
     }
     
