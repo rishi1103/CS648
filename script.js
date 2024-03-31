@@ -303,4 +303,55 @@ document.addEventListener('DOMContentLoaded', function() {
     delayInput.addEventListener('change', function() {
         delay = parseInt(delayInput.value); // Assuming delay is the variable you want to update
     });
+
+    function drawCircles() {
+        const backgroundCircle = document.getElementById('large-circle');
+        const circle1 = document.createElement('div');
+        circle1.id = 'circle1';
+        backgroundCircle.appendChild(circle1);
+    }
+    
+    function generateRandomPoints() {
+        const numPoints = 50;
+        const backgroundPoints = document.getElementById('background-points');
+    
+        for (let i = 0; i < numPoints; i++) {
+            const point = document.createElement('div');
+            point.classList.add('point');
+            const xOffset = Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20; // Bias towards left and right sides
+            point.style.top = `${Math.random() * document.body.clientHeight}px`; // Random position from top
+            point.style.left = `${xOffset}%`; // Random position from left
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+            point.style.backgroundColor = randomColor; // Apply random color
+            backgroundPoints.appendChild(point);
+        }
+    }
+
+    function generateRandomCircles() {
+        const numCircles = 10;
+        const backgroundPoints = document.getElementById('background-points');
+    
+        for (let i = 0; i < numCircles; i++) {
+            const circle = document.createElement('div');
+            circle.classList.add('circle');
+            const xOffset = Math.random() < 0.5 ? Math.random() * 20 : 80 + Math.random() * 20; // Bias towards left and right sides
+            const circleSize = Math.floor(Math.random() * 100) + 50; // Random size between 5 and 15 pixels
+            circle.style.width = `${circleSize}px`;
+            circle.style.height = `${circleSize}px`;
+            circle.style.top = `${Math.random() * document.body.clientHeight}px`; // Random position from top
+            circle.style.left = `${xOffset}%`; // Random position from left
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16); // Generate random color
+            circle.style.borderColor = randomColor; // Apply random border color
+            backgroundPoints.appendChild(circle);
+        }
+    }
+    
+    // Main function
+    function main() {
+        drawCircles();
+        generateRandomPoints();
+        generateRandomCircles();
+    }
+    
+    main();
 });
