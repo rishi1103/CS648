@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const startBtn = document.getElementById('start-btn');
     const resetBtn = document.getElementById('reset-btn');
     const delayInput = document.getElementById('delay-input');
+    const finalBtn = document.getElementById('final-btn');
     let delay = 300; // Delay between each step in milliseconds
     let points = []; // Array to store the points
     let algorithmStarted = false; // Track if the algorithm has started
@@ -257,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Stop the interval when all points have been drawn
         if (frame >= circles.length) {
             clearInterval(interval);
+            algorithmStarted = false;
             return;
         }
         // Draw circle and points
@@ -270,14 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for start button
     startBtn.addEventListener('click', function() {
-        if (points.length > 1) { // Ensure there are points to start the algorithm
-            algorithmStarted = true; // Set algorithm status to started
-            overlay.style.display = 'block';
-            smallestEnclosingCircle(points)
-            interval = setInterval(draw, delay);
-            overlay.style.display = 'none';
-        } else {
-            alert('Please add points before starting the algorithm.');
+        if(!algorithmStarted){
+            if (points.length > 1) { // Ensure there are points to start the algorithm
+                algorithmStarted = true; // Set algorithm status to started
+                overlay.style.display = 'block';
+                smallestEnclosingCircle(points)
+                interval = setInterval(draw, delay);
+                overlay.style.display = 'none';
+            } else {
+                alert('Please add points before starting the algorithm.');
+            }
         }
     });
 
@@ -286,6 +290,16 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(interval);
         reset();
     });
+
+    finalBtn.addEventListener('click', function() {
+        if(algorithmStarted){
+            drawCircle(ctx, circles[circles.length -1], points, currp[circles.length -1], pinarray[circles.length -1], isout[circles.length -1], colors[circles.length -1]);
+            clearInterval(interval);
+            frame = circles.length;
+            algorithmStarted = false;
+        }
+    });
+
     delayInput.addEventListener('change', function() {
         delay = parseInt(delayInput.value); // Assuming delay is the variable you want to update
     });
