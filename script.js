@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currp = []
     let colors = []
     let isout = []
-    let i = 0
+    let frame = 0
     let interval
 
     function isPointInsideCircle(point, circle) {
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         colors = [];
         isout = [];
         pinarray = [];
-        i = 0;
+        frame = 0;
         clearCanvas();
         algorithmStarted = false; // Reset algorithm status
     }
@@ -254,16 +254,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function draw() {
 
+        // Stop the interval when all points have been drawn
+        if (frame >= circles.length) {
+            clearInterval(interval);
+            return;
+        }
         // Draw circle and points
-        drawCircle(ctx, circles[i], points, currp[i], pinarray[i], isout[i], colors[i]);
+        drawCircle(ctx, circles[frame], points, currp[frame], pinarray[frame], isout[frame], colors[frame]);
     
         // Increment i to simulate progress
-        i++;
+        frame++;
     
-        // Stop the interval when all points have been drawn
-        if (i >= circles.length) {
-            clearInterval(interval);
-        }
     }
     
 
